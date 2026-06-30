@@ -103,18 +103,13 @@
     border: none;
     border-top: 1px solid var(--light-border);
   }
-  .recent-work-label {
-    text-align: center;
-    margin: 30px 0;
+
+  /* gallery (dark section) */
+  .gallery-section {
+    padding-top: 60px;
   }
-  .recent-work-label span {
-    display: inline-block;
-    background: #1a1a1a;
-    color: #fff;
-    padding: 8px 18px;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+  .gallery-section .page-section {
+    max-width: 1110px;
   }
 
   /* filters */
@@ -133,12 +128,12 @@
     font-size: 11px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    background: #fff;
-    border: 1px solid #ccc;
+    background: transparent;
+    border: 1px solid #444;
     border-radius: 14px;
     padding: 7px 16px;
     cursor: pointer;
-    color: #444;
+    color: #ccc;
   }
   .filters button.active,
   .filters button:hover {
@@ -153,14 +148,14 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 4px;
     max-width: 1110px;
-    margin: 0 auto 60px;
-    padding: 0 4px;
+    margin: 0 auto;
+    padding: 0;
   }
   .portfolio-item {
     position: relative;
     overflow: hidden;
     aspect-ratio: 370 / 300;
-    background: #f2f2f2;
+    background: #0d0d0d;
   }
   .portfolio-item img {
     width: 100%;
@@ -480,24 +475,22 @@
   <span>Award-Winning Graphic Design / Saundra Jones / Creative Director</span>
 </div>
 
-<hr class="section-rule">
+<div class="dark-section gallery-section" id="portfolio">
+<div class="page-section">
+  <h1>Recent Work</h1>
 
-<div class="recent-work-label" id="portfolio">
-  <span>Recent Work</span>
-</div>
+  <ul class="filters">
+    <li><button class="active" data-filter="all">Show All</button></li>
+    <li><button data-filter="advertising">Advertising</button></li>
+    <li><button data-filter="branding">Branding</button></li>
+    <li><button data-filter="collateral">Collateral</button></li>
+    <li><button data-filter="digital">Digital</button></li>
+    <li><button data-filter="environmental">Environmental</button></li>
+    <li><button data-filter="event-marketing">Event Marketing</button></li>
+    <li><button data-filter="exhibit">Exhibit Displays</button></li>
+  </ul>
 
-<ul class="filters">
-  <li><button class="active" data-filter="all">Show All</button></li>
-  <li><button data-filter="advertising">Advertising</button></li>
-  <li><button data-filter="branding">Branding</button></li>
-  <li><button data-filter="collateral">Collateral</button></li>
-  <li><button data-filter="digital">Digital</button></li>
-  <li><button data-filter="environmental">Environmental</button></li>
-  <li><button data-filter="event-marketing">Event Marketing</button></li>
-  <li><button data-filter="exhibit">Exhibit Displays</button></li>
-</ul>
-
-<div class="portfolio-grid" id="portfolio-grid">
+  <div class="portfolio-grid" id="portfolio-grid">
   <div class="portfolio-item" data-cat="digital">
     <img src="images/template-page-370x300.png" alt="Cambridge Engineered Solutions Website" loading="lazy">
     <div class="overlay"><div class="title">Cambridge Engineered Solutions Website</div></div>
@@ -654,6 +647,8 @@
     <img src="images/Lanier-Half-Page-Ad-370x300.jpg" alt="Lanier Electronics Group" loading="lazy">
     <div class="overlay"><div class="title">Lanier Electronics Group</div></div>
   </div>
+  </div>
+</div>
 </div>
 
 <div class="dark-section">
