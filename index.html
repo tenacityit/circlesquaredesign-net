@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>circle/square &mdash; Award-Winning Graphic Design / Saundra Jones, Creative Director</title>
+<style>
+  :root {
+    --circle-green: #8fd6ba;
+    --ink: #1a1a1a;
+    --gray: #888888;
+    --light-border: #e2e2e2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    background: #fff;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* top bar */
+  header.topbar {
+    background: #1a1a1a;
+    color: #fff;
+  }
+  .topbar nav {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .topbar nav a {
+    display: block;
+    padding: 14px 22px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-left: 1px solid #333;
+  }
+  .topbar nav a:hover,
+  .topbar nav a.active {
+    background: #fff;
+    color: #1a1a1a;
+  }
+
+  /* logo / hero */
+  .hero {
+    text-align: center;
+    padding: 60px 20px 30px;
+  }
+  .logo-mark {
+    display: inline-block;
+    position: relative;
+    width: 220px;
+    height: 150px;
+  }
+  .logo-mark .circle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 18px solid var(--circle-green);
+  }
+  .logo-mark .square {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    width: 110px;
+    height: 110px;
+    background: #1a1a1a;
+  }
+  .logo-text {
+    margin-top: 14px;
+    font-size: 26px;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
+  .logo-text .slash { color: #bbb; font-weight: 300; }
+
+  .tagline-box {
+    max-width: 640px;
+    margin: 40px auto 10px;
+    text-align: center;
+  }
+  .tagline-box span {
+    display: inline-block;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 10px 22px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .section-rule {
+    max-width: 900px;
+    margin: 26px auto;
+    border: none;
+    border-top: 1px solid var(--light-border);
+  }
+  .recent-work-label {
+    text-align: center;
+    margin: 30px 0;
+  }
+  .recent-work-label span {
+    display: inline-block;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 8px 18px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* filters */
+  .filters {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto 40px;
+    padding: 0 16px;
+    max-width: 900px;
+  }
+  .filters button {
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 14px;
+    padding: 7px 16px;
+    cursor: pointer;
+    color: #444;
+  }
+  .filters button.active,
+  .filters button:hover {
+    background: var(--circle-green);
+    border-color: var(--circle-green);
+    color: #1a1a1a;
+  }
+
+  /* portfolio grid */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    max-width: 1110px;
+    margin: 0 auto 60px;
+    padding: 0 4px;
+  }
+  .portfolio-item {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 370 / 300;
+    background: #f2f2f2;
+  }
+  .portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .portfolio-item .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(143, 214, 186, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 14px;
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+  .portfolio-item:hover .overlay {
+    opacity: 1;
+  }
+  .overlay .title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+  .portfolio-item.hidden {
+    display: none;
+  }
+
+  /* about / contact sections */
+  .page-section {
+    max-width: 900px;
+    margin: 0 auto 70px;
+    padding: 0 20px;
+  }
+  .page-section h1 {
+    text-align: center;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+  .bio-flex {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .bio-flex img {
+    width: 135px;
+    height: auto;
+  }
+  .bio-flex figcaption {
+    text-align: center;
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 6px;
+  }
+  .bio-text {
+    flex: 1;
+    min-width: 260px;
+    color: var(--gray);
+    font-weight: bold;
+    line-height: 1.7;
+    font-size: 14px;
+  }
+  .clients-heading {
+    color: var(--gray);
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  .clients-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 30px;
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .clients-cols p { margin: 4px 0; }
+
+  .contact-flex {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: left;
+  }
+  .contact-text {
+    font-weight: bold;
+    line-height: 1.8;
+    font-size: 15px;
+  }
+  .contact-text a { text-decoration: underline; }
+
+  footer {
+    background: #1a1a1a;
+    color: #999;
+    text-align: center;
+    padding: 24px 20px;
+    font-size: 12px;
+    letter-spacing: .5px;
+  }
+
+  @media (max-width: 700px) {
+    .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    .topbar nav { flex-wrap: wrap; }
+  }
+  @media (max-width: 420px) {
+    .portfolio-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <nav>
+    <a href="#portfolio" class="active">Portfolio</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="hero" id="top">
+  <div class="logo-mark">
+    <div class="circle"></div>
+    <div class="square"></div>
+  </div>
+  <div class="logo-text">circle<span class="slash">/</span>square</div>
+</div>
+
+<div class="tagline-box">
+  <span>Award-Winning Graphic Design / Saundra Jones / Creative Director</span>
+</div>
+
+<hr class="section-rule">
+
+<div class="recent-work-label" id="portfolio">
+  <span>Recent Work</span>
+</div>
+
+<ul class="filters">
+  <li><button class="active" data-filter="all">Show All</button></li>
+  <li><button data-filter="advertising">Advertising</button></li>
+  <li><button data-filter="branding">Branding</button></li>
+  <li><button data-filter="collateral">Collateral</button></li>
+  <li><button data-filter="digital">Digital</button></li>
+  <li><button data-filter="environmental">Environmental</button></li>
+  <li><button data-filter="event-marketing">Event Marketing</button></li>
+  <li><button data-filter="exhibit">Exhibit Displays</button></li>
+</ul>
+
+<div class="portfolio-grid" id="portfolio-grid">
+  <div class="portfolio-item" data-cat="digital">
+    <img src="images/template-page-370x300.png" alt="Cambridge Engineered Solutions Website" loading="lazy">
+    <div class="overlay"><div class="title">Cambridge Engineered Solutions Website</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="digital">
+    <img src="images/Screen-Shot-2013-01-23-at-4.16.13-PM-370x300.png" alt="Lanier Electronics Website" loading="lazy">
+    <div class="overlay"><div class="title">Lanier Electronics Website</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="digital">
+    <img src="images/Home-page-370x300.png" alt="St James Place Apartments" loading="lazy">
+    <div class="overlay"><div class="title">St James Place Apartments</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="digital">
+    <img src="images/Currents_masthead-370x167.jpg" alt="Dorchester County Economic Development" loading="lazy">
+    <div class="overlay"><div class="title">Dorchester County Economic Development</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="digital">
+    <img src="images/Gaming-Banner-Ad-370x205.png" alt="Banner Ads" loading="lazy">
+    <div class="overlay"><div class="title">Banner Ads</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="branding">
+    <img src="images/HM_logo-2-370x300.jpg" alt="Heavy Metal Tour Brand" loading="lazy">
+    <div class="overlay"><div class="title">Heavy Metal Tour Brand</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="collateral">
+    <img src="images/MVF-Brochure-370x300.jpg" alt="Maryland Venture Fund" loading="lazy">
+    <div class="overlay"><div class="title">Maryland Venture Fund</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="advertising">
+    <img src="images/HM-2-370x300.jpg" alt="Heavy Metal Tour" loading="lazy">
+    <div class="overlay"><div class="title">Heavy Metal Tour</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="event-marketing">
+    <img src="images/CorenetInvitation_Front-370x300.jpg" alt="CoreNET Global Conference" loading="lazy">
+    <div class="overlay"><div class="title">CoreNET Global Conference</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="event-marketing">
+    <img src="images/ICSCInvitationInside-370x300.jpg" alt="ICSC Reception – Las Vegas" loading="lazy">
+    <div class="overlay"><div class="title">ICSC Reception – Las Vegas</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="event-marketing">
+    <img src="images/JudgesNightOut-370x300.jpg" alt="Judges Night Out" loading="lazy">
+    <div class="overlay"><div class="title">Judges Night Out</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="event-marketing">
+    <img src="images/IMC-Finale-Wall-370x300.jpg" alt="InvestMaryland Challenge Finale" loading="lazy">
+    <div class="overlay"><div class="title">InvestMaryland Challenge Finale</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="environmental">
+    <img src="images/BMC-lobby-370x300.jpg" alt="BioMaryland Center Lobby" loading="lazy">
+    <div class="overlay"><div class="title">BioMaryland Center Lobby</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="environmental">
+    <img src="images/WorldTradeCenterMaryland4-370x300.jpg" alt="World Trade Center Lobby" loading="lazy">
+    <div class="overlay"><div class="title">World Trade Center Lobby</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="environmental">
+    <img src="images/BWI_1-370x300.jpg" alt="BWI Airport Installation" loading="lazy">
+    <div class="overlay"><div class="title">BWI Airport Installation</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="exhibit">
+    <img src="images/Medica-1-370x300.jpg" alt="MEDICA 2014" loading="lazy">
+    <div class="overlay"><div class="title">MEDICA 2014</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="exhibit">
+    <img src="images/Boston-2-370x300.jpg" alt="BioInternational 2012 – Maryland Pavilion" loading="lazy">
+    <div class="overlay"><div class="title">BioInternational 2012 – Maryland Pavilion</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="exhibit">
+    <img src="images/Bio-Pavilion-2014-370x300.jpg" alt="Bio International 2014 – Maryland Pavilion" loading="lazy">
+    <div class="overlay"><div class="title">Bio International 2014 – Maryland Pavilion</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="branding">
+    <img src="images/WMU_Dor_MD-370x300.jpg" alt="Water Moves Us" loading="lazy">
+    <div class="overlay"><div class="title">Water Moves Us</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="branding">
+    <img src="images/AFA-logo_vertical-370x300.jpg" alt="AirFare America" loading="lazy">
+    <div class="overlay"><div class="title">AirFare America</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="collateral">
+    <img src="images/HOA-Cover-370x300.jpg" alt="Center for Health Care & Healthy Living" loading="lazy">
+    <div class="overlay"><div class="title">Center for Health Care & Healthy Living</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="collateral">
+    <img src="images/IPT-Sponsorship-cover-370x300.jpg" alt="IPT Sponsorship Packet" loading="lazy">
+    <div class="overlay"><div class="title">IPT Sponsorship Packet</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="branding">
+    <img src="images/Choptank-Logo_Final-370x300.jpg" alt="Choptank Communications" loading="lazy">
+    <div class="overlay"><div class="title">Choptank Communications</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="branding">
+    <img src="images/Lanier_blue_cmyk-370x300.jpg" alt="Lanier Electronics Group" loading="lazy">
+    <div class="overlay"><div class="title">Lanier Electronics Group</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="branding">
+    <img src="images/HOA-logotype-2-370x300.jpg" alt="Hebrew Orphan Asylum" loading="lazy">
+    <div class="overlay"><div class="title">Hebrew Orphan Asylum</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="collateral">
+    <img src="images/LanierBro_cvr-370x300.jpg" alt="Lanier Electronics Group" loading="lazy">
+    <div class="overlay"><div class="title">Lanier Electronics Group</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="branding">
+    <img src="images/InvestMD-Challenge-Logo1-370x300.jpg" alt="InvestMaryland Challenge" loading="lazy">
+    <div class="overlay"><div class="title">InvestMaryland Challenge</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="collateral">
+    <img src="images/Lanx-370x300.jpg" alt="Lanx" loading="lazy">
+    <div class="overlay"><div class="title">Lanx</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="collateral">
+    <img src="images/Stjames-Marketing-Packet-370x300.jpg" alt="St. James Place Apartments" loading="lazy">
+    <div class="overlay"><div class="title">St. James Place Apartments</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="collateral">
+    <img src="images/Centaur-Magazine-Fall-cover-370x300.jpg" alt="Centaur Magazine" loading="lazy">
+    <div class="overlay"><div class="title">Centaur Magazine</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="branding">
+    <img src="images/StJames-Place-Apts-logo-370x300.jpg" alt="St. James Place Apartments" loading="lazy">
+    <div class="overlay"><div class="title">St. James Place Apartments</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="collateral">
+    <img src="images/byways-370x300.png" alt="Maryland Scenic Byways" loading="lazy">
+    <div class="overlay"><div class="title">Maryland Scenic Byways</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="branding">
+    <img src="images/centaur-370x300.png" alt="Centaur Magazine" loading="lazy">
+    <div class="overlay"><div class="title">Centaur Magazine</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="branding">
+    <img src="images/mosbe-370x300.png" alt="Mosbe" loading="lazy">
+    <div class="overlay"><div class="title">Mosbe</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="advertising">
+    <img src="images/jump-370x300.png" alt="Invest Maryland Challenge" loading="lazy">
+    <div class="overlay"><div class="title">Invest Maryland Challenge</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="advertising">
+    <img src="images/ARLord12_20-370x300.jpg" alt="Breakaway Games" loading="lazy">
+    <div class="overlay"><div class="title">Breakaway Games</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="advertising">
+    <img src="images/biomd_tall-350x300.png" alt="BioMaryland" loading="lazy">
+    <div class="overlay"><div class="title">BioMaryland</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="collateral">
+    <img src="images/PresidentialPartners-370x300.jpg" alt="Presidential Partners" loading="lazy">
+    <div class="overlay"><div class="title">Presidential Partners</div></div>
+  </div>
+  <div class="portfolio-item" data-cat="advertising">
+    <img src="images/Lanier-Half-Page-Ad-370x300.jpg" alt="Lanier Electronics Group" loading="lazy">
+    <div class="overlay"><div class="title">Lanier Electronics Group</div></div>
+  </div>
+</div>
+
+<div class="page-section" id="about">
+  <h1>About</h1>
+  <div class="bio-flex">
+    <figure style="margin:0;">
+      <img src="images/JonesSaundra_Xsmall.jpg" alt="Saundra Jones, Creative Director">
+      <figcaption>Saundra Jones<br>Creative Director</figcaption>
+    </figure>
+    <div class="bio-text">
+      <p>CircleSquare llc is a creative collaboration of Saundra Jones and a team of talented independent designers, photographers, web designers and production experts assembled to support your marketing needs with award-winning design. We offer design and creative for a variety of sectors:</p>
+      <p>commercial real estate &nbsp;&bull;&nbsp; start-up companies &nbsp;&bull;&nbsp; economic development &nbsp;&bull;&nbsp; health care &nbsp;&bull;&nbsp; education &nbsp;&bull;&nbsp; non-profits &nbsp;&bull;&nbsp; tourism &nbsp;&bull;&nbsp; private industry &nbsp;&bull;&nbsp; state &amp; local government</p>
+      <p>Successfully making the connection between good design and an effective message, Saundra is an award-winning graphic designer with 25+ years experience. Saundra is a MICA (Maryland Institute College of Arts) Magna Cum Laude graduate and lover of all things creative from fine arts, design, performing arts, architecture and everything in between.</p>
+    </div>
+  </div>
+
+  <p class="clients-heading">CLIENTS</p>
+  <div class="clients-cols">
+    <div>
+      <p>Airfare America</p>
+      <p>Associated Black Charities</p>
+      <p>Baltimore City Community Colleges (BCCC)</p>
+      <p>Baltimore Educational Scholarship Trust (BEST)</p>
+      <p>Banks Contracting Company</p>
+      <p>BonSecours Hospital</p>
+      <p>BreakAway Ltd</p>
+      <p>Camden College</p>
+      <p>Catholic Charities USA</p>
+      <p>Choptank Communications</p>
+      <p>Columbus Center</p>
+      <p>Community Colleges of Baltimore County (CCBC)</p>
+      <p>Coppin Heights Community Development Corporation</p>
+      <p>Dorchester County Economic Development</p>
+      <p>Enterprise Foundation</p>
+      <p>Greater Baltimore Medical Center</p>
+      <p>Health Insurance Association of America (HIAA)</p>
+    </div>
+    <div>
+      <p>Iota Phi Theta Fraternity Inc</p>
+      <p>Lanier Electronics Group</p>
+      <p>League for People with Disabilities</p>
+      <p>Liberty Medical Center</p>
+      <p>Maryland Department of Human Resources</p>
+      <p>Mid-City Urban</p>
+      <p>MM&amp;G</p>
+      <p>Music One</p>
+      <p>Open Technology</p>
+      <p>Presidential Partners</p>
+      <p>St. James Place Apartments</p>
+      <p>The BITH Group</p>
+      <p>The Office of Congressman Elijah Cummings</p>
+      <p>The Science+Technology Park at Johns Hopkins</p>
+      <p>The Wilkinson Group</p>
+      <p>Washington D.C. Apartment Insurance Program (AIP)</p>
+    </div>
+  </div>
+</div>
+
+<div class="page-section" id="contact">
+  <h1>Contact</h1>
+  <div class="contact-flex">
+    <figure style="margin:0;">
+      <img src="images/JonesSaundra_Xsmall.jpg" alt="Saundra Jones, Creative Director" style="width:145px;">
+      <figcaption style="text-align:center;font-size:12px;color:var(--gray);margin-top:6px;">Saundra Jones<br>Creative Director</figcaption>
+    </figure>
+    <div class="contact-text">
+      <strong>Circle Square llc</strong><br>
+      211 East Lombard Street | Suite 128<br>
+      Baltimore, MD 21202<br>
+      443.415.4442<br>
+      <a href="mailto:sjones@circlesquaredesign.net">sjones@circlesquaredesign.net</a><br>
+      <a href="mailto:svjones@aol.com">svjones@aol.com</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  &copy; circle/square design &mdash; Saundra Jones, Creative Director
+</footer>
+
+<script>
+  const buttons = document.querySelectorAll('.filters button');
+  const items = document.querySelectorAll('.portfolio-item');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      items.forEach(item => {
+        if (filter === 'all' || item.dataset.cat.split(' ').includes(filter)) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
