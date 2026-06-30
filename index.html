@@ -178,6 +178,7 @@
     text-align: center;
     padding: 14px;
     opacity: 0;
+    pointer-events: none;
     transition: opacity .25s ease;
   }
   .portfolio-item:hover .overlay {
@@ -193,73 +194,251 @@
   .portfolio-item.hidden {
     display: none;
   }
+  .portfolio-item img {
+    cursor: pointer;
+  }
 
-  /* about / contact sections */
-  .page-section {
+  /* lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.96);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 40px 20px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-stage {
+    position: relative;
+    max-width: 1000px;
+    width: 100%;
+    text-align: center;
+  }
+  .lightbox-stage img {
+    max-width: 100%;
+    max-height: 72vh;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #333;
+  }
+  .lightbox-title {
+    color: #fff;
+    margin-top: 18px;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .lightbox-close,
+  .lightbox-prev,
+  .lightbox-next {
+    position: absolute;
+    background: none;
+    border: 1px solid var(--circle-green);
+    color: var(--circle-green);
+    font-family: inherit;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    line-height: 1;
+    border-radius: 50%;
+  }
+  .lightbox-close:hover,
+  .lightbox-prev:hover,
+  .lightbox-next:hover {
+    background: var(--circle-green);
+    color: #1a1a1a;
+  }
+  .lightbox-close {
+    top: -50px;
+    right: 0;
+  }
+  .lightbox-prev,
+  .lightbox-next {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .lightbox-prev { left: -20px; }
+  .lightbox-next { right: -20px; }
+  @media (max-width: 700px) {
+    .lightbox-prev { left: 4px; }
+    .lightbox-next { right: 4px; }
+    .lightbox-close { top: -42px; }
+  }
+
+  /* dark band sections (about / contact) */
+  .dark-section {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 70px 20px;
+  }
+  .dark-section .page-section {
     max-width: 900px;
-    margin: 0 auto 70px;
-    padding: 0 20px;
+    margin: 0 auto;
+    padding: 0;
   }
   .page-section h1 {
     text-align: center;
-    font-size: 20px;
-    letter-spacing: 2px;
+    font-size: 13px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
+    color: #fff;
+  }
+  .page-section h1::before,
+  .page-section h1::after {
+    content: "";
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--circle-green);
+    vertical-align: middle;
+    margin: 0 14px 3px;
   }
   .bio-flex {
     display: flex;
-    gap: 30px;
-    align-items: flex-start;
+    gap: 40px;
+    align-items: center;
     flex-wrap: wrap;
+    margin-bottom: 50px;
   }
-  .bio-flex img {
-    width: 135px;
-    height: auto;
+  .bio-flex .bio-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--circle-green);
+    flex-shrink: 0;
+  }
+  .bio-flex .bio-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
   }
   .bio-flex figcaption {
     text-align: center;
-    font-size: 12px;
-    color: var(--gray);
-    margin-top: 6px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--circle-green);
+    margin-top: 12px;
   }
   .bio-text {
     flex: 1;
     min-width: 260px;
-    color: var(--gray);
-    font-weight: bold;
-    line-height: 1.7;
+    color: #ccc;
+    line-height: 1.8;
     font-size: 14px;
   }
   .clients-heading {
-    color: var(--gray);
+    color: var(--circle-green);
     font-weight: bold;
-    margin-top: 10px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0 0 18px;
+    padding-top: 26px;
+    border-top: 1px solid #333;
   }
   .clients-cols {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0 30px;
-    color: var(--ink);
+    color: #ccc;
     font-size: 14px;
-    line-height: 1.8;
+    line-height: 1.9;
   }
   .clients-cols p { margin: 4px 0; }
 
   .contact-flex {
     display: flex;
-    gap: 30px;
-    align-items: flex-start;
+    gap: 50px;
+    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     text-align: left;
   }
-  .contact-text {
-    font-weight: bold;
-    line-height: 1.8;
-    font-size: 15px;
+  .contact-flex .bio-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--circle-green);
+    flex-shrink: 0;
   }
-  .contact-text a { text-decoration: underline; }
+  .contact-flex .bio-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+  .contact-flex figcaption {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--circle-green);
+    margin-top: 12px;
+  }
+  .contact-form {
+    flex: 1;
+    min-width: 280px;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .contact-form label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--circle-green);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #444;
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 8px 2px;
+    outline: none;
+    transition: border-color .2s ease;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    border-color: var(--circle-green);
+  }
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+  .contact-form button {
+    align-self: flex-start;
+    margin-top: 6px;
+    font-family: inherit;
+    background: var(--circle-green);
+    color: #1a1a1a;
+    border: none;
+    padding: 12px 30px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .contact-form button:hover {
+    background: #fff;
+  }
 
   footer {
     background: #1a1a1a;
@@ -477,11 +656,14 @@
   </div>
 </div>
 
+<div class="dark-section">
 <div class="page-section" id="about">
   <h1>About</h1>
   <div class="bio-flex">
     <figure style="margin:0;">
-      <img src="images/JonesSaundra_Xsmall.jpg" alt="Saundra Jones, Creative Director">
+      <div class="bio-photo">
+        <img src="images/JonesSaundra_Xsmall.jpg" alt="Saundra Jones, Creative Director">
+      </div>
       <figcaption>Saundra Jones<br>Creative Director</figcaption>
     </figure>
     <div class="bio-text">
@@ -491,7 +673,7 @@
     </div>
   </div>
 
-  <p class="clients-heading">CLIENTS</p>
+  <p class="clients-heading">Clients</p>
   <div class="clients-cols">
     <div>
       <p>Airfare America</p>
@@ -532,22 +714,44 @@
     </div>
   </div>
 </div>
+</div>
 
+<div class="dark-section" style="background:#141414;">
 <div class="page-section" id="contact">
   <h1>Contact</h1>
   <div class="contact-flex">
     <figure style="margin:0;">
-      <img src="images/JonesSaundra_Xsmall.jpg" alt="Saundra Jones, Creative Director" style="width:145px;">
-      <figcaption style="text-align:center;font-size:12px;color:var(--gray);margin-top:6px;">Saundra Jones<br>Creative Director</figcaption>
+      <div class="bio-photo">
+        <img src="images/JonesSaundra_Xsmall.jpg" alt="Saundra Jones, Creative Director">
+      </div>
+      <figcaption>Saundra Jones<br>Creative Director</figcaption>
     </figure>
-    <div class="contact-text">
-      <strong>Circle Square llc</strong><br>
-      211 East Lombard Street | Suite 128<br>
-      Baltimore, MD 21202<br>
-      443.415.4442<br>
-      <a href="mailto:sjones@circlesquaredesign.net">sjones@circlesquaredesign.net</a><br>
-      <a href="mailto:svjones@aol.com">svjones@aol.com</a>
-    </div>
+    <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</div>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-stage">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous">&#8249;</button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-next" id="lightbox-next" aria-label="Next">&#8250;</button>
+    <div class="lightbox-title" id="lightbox-title"></div>
   </div>
 </div>
 
@@ -571,6 +775,65 @@
         }
       });
     });
+  });
+
+  // lightbox slideshow
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  let currentIndex = 0;
+
+  function visibleItems() {
+    return Array.from(items).filter(item => !item.classList.contains('hidden'));
+  }
+
+  function openLightbox(item) {
+    const visible = visibleItems();
+    currentIndex = visible.indexOf(item);
+    showSlide();
+    lightbox.classList.add('open');
+  }
+
+  function showSlide() {
+    const visible = visibleItems();
+    const item = visible[currentIndex];
+    const img = item.querySelector('img');
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightboxTitle.textContent = img.alt;
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+  }
+
+  function nextSlide() {
+    const visible = visibleItems();
+    currentIndex = (currentIndex + 1) % visible.length;
+    showSlide();
+  }
+
+  function prevSlide() {
+    const visible = visibleItems();
+    currentIndex = (currentIndex - 1 + visible.length) % visible.length;
+    showSlide();
+  }
+
+  items.forEach(item => {
+    item.querySelector('img').addEventListener('click', () => openLightbox(item));
+  });
+
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.getElementById('lightbox-next').addEventListener('click', nextSlide);
+  document.getElementById('lightbox-prev').addEventListener('click', prevSlide);
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
   });
 </script>
 
